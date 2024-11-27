@@ -2,7 +2,6 @@ package main
 
 import (
 	"os/exec"
-	"strconv"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -42,18 +41,8 @@ func main() {
 	})
 
 	app.Get("/", func(c *fiber.Ctx) error {
-		start := time.Now()
-		// get query params
-		delay := c.Query("delay")
-		delayInt, _ := strconv.Atoi(delay)
-
-		// sleep for 5 seconds
-		time.Sleep(time.Duration(delayInt) * time.Second)
-
-		executionTime := time.Since(start)
 		return c.JSON(fiber.Map{
-			"message":       "Hello, World!",
-			"executionTime": executionTime.String(),
+			"message": "Hello, World!",
 		})
 	})
 
